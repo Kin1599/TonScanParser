@@ -1,0 +1,5 @@
+/build
+/dist
+/.vscode
+/Result.xlsx
+/tonScanParser.spec
