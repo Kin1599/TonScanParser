@@ -3,11 +3,17 @@ from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 import time
 import pandas as pd
+import os
 
 def data_to_excel(currentExcelData):
     df = pd.DataFrame(currentExcelData)
-    with pd.ExcelWriter("Result.xlsx", engine='openpyxl', mode="a") as writer:
-        df.to_excel(writer, sheet_name=time.strftime("%H.%M-%d %m %Y"), index=False)
+    file_name = "Result.xlsx"
+    if not os.path.isfile(file_name):
+        with pd.ExcelWriter(file_name, engine='openpyxl') as writer:
+            df.to_excel(writer, sheet_name=time.strftime("%H.%M-%d %m %Y"), index=False) 
+    else:   
+        with pd.ExcelWriter("Result.xlsx", engine='openpyxl', mode="a") as writer:
+            df.to_excel(writer, sheet_name=time.strftime("%H.%M-%d %m %Y"), index=False)
     print("Данные успешно записаны в excel!")
 
 def scroll_to_end(driver):
