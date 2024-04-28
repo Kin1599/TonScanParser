@@ -47,7 +47,7 @@ def comparison_sheets(excelFile, currentExcelData):
                         was = df2_matrix[row_index][2] if df2_matrix[row_index][2] not in [' ', 'Токен только появился'] else 0
                         diff = now - was
                     else:
-                        diff = now
+                        diff = 0
                 currentExcelData[i].append(diff)
             else:
                 currentExcelData[i].append("Токен только появился")
